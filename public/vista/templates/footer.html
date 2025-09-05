@@ -1,0 +1,25 @@
+    <script>
+        const loggedUser = localStorage.getItem('dbUser');
+
+        if (loggedUser) {
+        // Mostrar el usuario en el dashboard
+        //document.getElementById('welcomeMessage').textContent = `${loggedUser}`;
+        } else {
+            window.location.href = '/tair-web/index.html';
+        }
+
+        const logoutIcon = document.getElementById('log_out');
+
+        // Agrega un evento de clic
+        document.getElementById('log_out').addEventListener('click', () => {
+        // Limpiar el almacenamiento
+        localStorage.clear();
+        sessionStorage.clear();
+
+        // Redirigir al login
+        window.location.href = '/tair-web/index.html';
+        });
+    </script>
+    <script type="text/javascript" src="../js/app.js" defer></script>
+</body>
+</html>
