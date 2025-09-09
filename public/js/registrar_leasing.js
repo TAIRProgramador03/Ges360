@@ -601,10 +601,12 @@ async function guardaLeasing() {
 async function subirArchivo(archivo) {
   const formData = new FormData();
   formData.append("archivoPdf", archivo);
+  formData.append("documentType", "leasings");
 
   try {
     const response = await fetch("http://192.168.5.207:3000/subirArchivo", {
       method: "POST",
+      enctype: "multipart/form-data",
       body: formData,
     });
 

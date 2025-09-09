@@ -53,6 +53,19 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 // const upload = multer({ storage });
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const rutaDestino = path.join(__dirname, "public/pdf/tmp");
+    fs.mkdirSync(rutaDestino, { recursive: true });
+    cb(null, rutaDestino);
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage }).single("archivoPdf");
+
 // Ruta para manejar el inicio de sesión
 app.post("/login", async (req, res) => {
   const { dbUser, password } = req.body;
@@ -712,25 +725,48 @@ app.post("/insertarContrato", async (req, res) => {
 //   res.json({ success: true, message: "Archivo subido correctamente" });
 // });
 
-app.post("/subirArchivo", (req, res, next) => {
-  console.log(req.body.documentType);
+// app.post("/subirArchivo", (req, res, next) => {
+//   console.log(req.body.documentType);
 
-  const form = multer({
-    storage: multer.diskStorage({
-      destination: (req, file, cb) => {
-        const tipo = req.body.documentType?.replace(/\/+$/, "") || "";
-        // const pathBase = `public/pdf/${tipo}`;
-        const rutaDestino = path.join(__dirname, "public/pdf/contract");
-        fs.mkdirSync(rutaDestino, { recursive: true });
-        cb(null, rutaDestino);
-      },
-      filename: (req, file, cb) => {
-        cb(null, file.originalname);
-      },
-    }),
-  }).single("archivoPdf");
+//   const form = multer({
+//     storage: multer.diskStorage({
+//       destination: (req, file, cb) => {
+//         const tipo = req.body.documentType?.replace(/\/+$/, "") || "";
+//         // const pathBase = `public/pdf/${tipo}`;
+//         const rutaDestino = path.join(__dirname, "public/pdf/contract");
+//         fs.mkdirSync(rutaDestino, { recursive: true });
+//         cb(null, rutaDestino);
+//       },
+//       filename: (req, file, cb) => {
+//         cb(null, file.originalname);
+//       },
+//     }),
+//   }).single("archivoPdf");
 
-  form(req, res, function (err) {
+//   form(req, res, function (err) {
+//     if (err) {
+//       return res
+//         .status(500)
+//         .json({ success: false, message: "Error al subir el archivo" });
+//     }
+
+//     if (!req.file) {
+//       return res.json({
+//         success: false,
+//         message: "No se recibió ningún archivo",
+//       });
+//     }
+
+//     res.json({
+//       success: true,
+//       message: "Archivo subido correctamente",
+//       ruta: req.file.path,
+//     });
+//   });
+// });
+
+app.post("/subirArchivo", (req, res) => {
+  upload(req, res, function (err) {
     if (err) {
       return res
         .status(500)
@@ -744,10 +780,16 @@ app.post("/subirArchivo", (req, res, next) => {
       });
     }
 
+    const tipo = req.body.documentType?.replace(/\/+$/, "") || "";
+    const destinoFinal = path.join(__dirname, "public/pdf", tipo);
+    fs.mkdirSync(destinoFinal, { recursive: true });
+    const rutaFinal = path.join(destinoFinal, req.file.originalname);
+    fs.renameSync(req.file.path, rutaFinal);
+
     res.json({
       success: true,
       message: "Archivo subido correctamente",
-      ruta: req.file.path,
+      ruta: rutaFinal,
     });
   });
 });

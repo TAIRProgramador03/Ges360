@@ -481,14 +481,12 @@ async function guardarContrato() {
 
 async function subirArchivo(archivo) {
   const formData = new FormData();
-  let type = "contract";
   formData.append("archivoPdf", archivo);
-  formData.append("documentType", type);
-
-  console.log(formData);
+  formData.append("documentType", "contracts");
 
   try {
     const response = await fetch("http://192.168.5.207:3000/subirArchivo", {
+      enctype: "multipart/form-data",
       method: "POST",
       body: formData,
     });
