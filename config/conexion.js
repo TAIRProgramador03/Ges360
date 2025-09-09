@@ -1,6 +1,6 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const odbc = require('odbc'); // Usar el paquete odbc para conectar a la base de datos
+const express = require("express");
+const bodyParser = require("body-parser");
+const odbc = require("odbc"); // Usar el paquete odbc para conectar a la base de datos
 const app = express();
 const port = 3000;
 
@@ -8,47 +8,46 @@ const port = 3000;
 app.use(bodyParser.json());
 
 // Ruta para la autenticación
-app.post('./config/conexion.js', async (req, res) => {
-    const { dbUser, password } = req.body;
+app.post("./config/conexion.js", async (req, res) => {
+  const { dbUser, password } = req.body;
 
-    try {
-        // Establecer conexión con la base de datos usando ODBC
-        const connection = await odbc.connect('DSN=QDSN_190.187.68.78;UID=' + dbUser + ';PWD=' + password + ';System=190.187.68.78');
-        console.log("Conexión exitosa.");
+  try {
+    // Establecer conexión con la base de datos usando ODBC
+    const connection = await odbc.connect(
+      "DSN=QDSN_190.187.68.78;UID=" +
+        dbUser +
+        ";PWD=" +
+        password +
+        ";System=190.187.68.78"
+    );
+    console.log("Conexión exitosa.");
 
-        // Hacer algo con la conexión, como verificar que el usuario existe
-        const result = await connection.query('SELECT * FROM SPEED400AT.USUARIOS WHERE usuario = ?', [dbUser]);
+    // Hacer algo con la conexión, como verificar que el usuario existe
+    const result = await connection.query(
+      "SELECT * FROM SPEED400AT.USUARIOS WHERE usuario = ?",
+      [dbUser]
+    );
 
-        if (result.length > 0) {
-            // Usuario encontrado, autenticación exitosa
-            res.json({ success: true, message: 'Usuario autenticado correctamente' });
-        } else {
-            // Usuario no encontrado
-            res.json({ success: false, message: 'Usuario o contraseña incorrectos' });
-        }
-    } catch (err) {
-        console.error('Error de conexión:', err);
-        res.status(500).json({ success: false, message: 'Error de conexión a la base de datos' });
+    if (result.length > 0) {
+      // Usuario encontrado, autenticación exitosa
+      res.json({ success: true, message: "Usuario autenticado correctamente" });
+    } else {
+      // Usuario no encontrado
+      res.json({ success: false, message: "Usuario o contraseña incorrectos" });
     }
+  } catch (err) {
+    console.error("Error de conexión:", err);
+    res.status(500).json({
+      success: false,
+      message: "Error de conexión a la base de datos",
+    });
+  }
 });
 
 // Iniciar el servidor
 app.listen(port, () => {
-    console.log(`Servidor escuchando en http://localhost:${port}`);
+  console.log(`Servidor escuchando en http://localhost:${port}`);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*const odbc = require('odbc');
 

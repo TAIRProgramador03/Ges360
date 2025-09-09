@@ -470,15 +470,18 @@
                     <div class="cbo-form-adiciona-header">
                         <div class="cbo-clau-te">
                             <label for="combo-box-cliente">Cliente:</label>
-                            <select id="combo-box" name="opciones" class="cbo-form-cliente"></select>
+                            <select id="combo-box" name="opciones" class="cbo-form-cliente select-form-clientes"></select>
                         </div>
                         <div class="cbo-clau-te">
                             <label for="combo-box-leasing">N° De Leasing:</label>
-                            <select id="combo-box-leasing" name="opciones" class="cbo-form-leasing"></select>
+                            <select id="combo-box-leasing" disabled name="opciones" class="cbo-form-leasing">
+                                <option value="" disabled selected>Seleccione un Leasing</option>
+                            </select>
                         </div> 
                     </div>
                     <div class="cbo-form-adiciona">
-                        <button class="btn-flota-adi" onclick="listaVehiculosAsignables()">Flota Total</button>
+                        <!-- onclick="listaVehiculosAsignables()" -->
+                        <!-- <button id="btn-flota-total" class="btn-flota-adi" >Flota Total</button> -->
                     </div>
                 </div>
                 <div class="tabla-form-adi">
