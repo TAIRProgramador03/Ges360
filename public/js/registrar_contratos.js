@@ -1,3 +1,5 @@
+import { IP_LOCAL } from "./../vars.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarClientes();
   cargarModelos();
@@ -103,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function cargarClientes() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/clientes"); // Ruta relativa al servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/clientes`); // Ruta relativa al servidor
     if (!response.ok) {
       throw new Error("Error en la solicitud");
     }
@@ -134,7 +136,7 @@ async function cargarClientes() {
 
 async function cargarModelos() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/modelos"); // Ruta del servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/modelos`); // Ruta del servidor
     if (!response.ok) {
       throw new Error("Error en la solicitud");
     }
@@ -165,7 +167,7 @@ async function cargarModelos() {
 
 async function cargarModelosFila(selectElement) {
   try {
-    const response = await fetch("http://192.168.5.207:3000/modelos"); // Ruta del servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/modelos`); // Ruta del servidor
     if (!response.ok) {
       throw new Error("Error en la solicitud");
     }
@@ -457,7 +459,7 @@ async function guardarContrato() {
   const contratoData = { ...formData, detalles, archivoPdf: nombreArchivo };
 
   try {
-    const response = await fetch("http://192.168.5.207:3000/insertarContrato", {
+    const response = await fetch(`http://${IP_LOCAL}:3000/insertarContrato`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contratoData),
@@ -485,7 +487,7 @@ async function subirArchivo(archivo) {
   formData.append("documentType", "contracts");
 
   try {
-    const response = await fetch("http://192.168.5.207:3000/subirArchivo", {
+    const response = await fetch(`http://${IP_LOCAL}:3000/subirArchivo`, {
       enctype: "multipart/form-data",
       method: "POST",
       body: formData,
@@ -504,7 +506,7 @@ async function subirArchivo(archivo) {
 async function validarArchivo(nombreArchivo) {
   try {
     const response = await fetch(
-      `http://192.168.5.207:3000/validarArchivo?nombre=${nombreArchivo}`
+      `http://${IP_LOCAL}:3000/validarArchivo?nombre=${nombreArchivo}`
     );
     const result = await response.json();
 

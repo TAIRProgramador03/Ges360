@@ -881,7 +881,7 @@ i{
     });
 
     </script>
-    <script src="../js/dashboard.js"></script>
+    <script type="module" src="../js/dashboard.js"></script>
 <?php
-  require './templates/footer.html';
+    require './templates/footer.html';
 ?>

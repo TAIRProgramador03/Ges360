@@ -1808,7 +1808,7 @@
 
         
     </script>
-    <script src="../js/registrar_leasing.js"></script>
+    <script type="module" src="../js/registrar_leasing.js"></script>
 <?php
     require './templates/footer.html';
 ?>

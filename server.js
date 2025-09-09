@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const app = express();
 const port = 3000;
+const { IP_LOCAL, IP_ODBC_BD } = require("./public/vars.js");
 
 require("dotenv").config(); // Esto carga las variables del archivo .env
 
@@ -18,8 +19,8 @@ const openai = new OpenAI({
 
 // Variables globales
 const dbConfig = {
-  DSN: "QDSN_192.168.5.5",
-  system: "192.168.5.5",
+  DSN: `QDSN_${IP_ODBC_BD}`,
+  system: IP_ODBC_BD,
 };
 
 let globalDbUser = "";
@@ -247,9 +248,9 @@ app.get("/leasingOfClient", async (req, res) => {
   }
 });
 
-// Iniciar servidor http://192.168.5.207/
+// Iniciar servidor IP_LOCAL/
 app.listen(port, () => {
-  console.log(`Servidor corriendo en https://192.168.5.207:${port}`);
+  console.log(`Servidor corriendo en https://${IP_LOCAL}:${port}`);
 });
 
 /*app.get('/contratos', async (req, res) => {
@@ -640,7 +641,7 @@ app.post("/insertarContrato", async (req, res) => {
 
   const claseContra = "P";
   const fechaFormatoDB = convertirFecha(fechaFirma);
-  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/contracts/${archivoPdf}`;
+  let nombreArchivo = `http://${IP_LOCAL}/tair-web/public/pdf/contracts/${archivoPdf}`;
 
   let connection;
   try {
@@ -827,7 +828,7 @@ app.post("/insertarDocumento", async (req, res) => {
     return fecha.replace(/-/g, "");
   }
 
-  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/documents/${archivoPdf}`;
+  let nombreArchivo = `http://${IP_LOCAL}/tair-web/public/pdf/documents/${archivoPdf}`;
 
   const claseDocu = "H";
   const fechaFormatoDB = convertirFecha(fechaFirma);
@@ -1150,7 +1151,7 @@ app.post("/insertaLeasing", async (req, res) => {
   const fechaIniDB = convertirFecha(fechaIni);
   const fechaFinDB = convertirFecha(fechaFin);
 
-  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/leasings/${archivoPdf}`;
+  let nombreArchivo = `http://${IP_LOCAL}/tair-web/public/pdf/leasings/${archivoPdf}`;
   let connection;
   try {
     connection = await odbc.connect(

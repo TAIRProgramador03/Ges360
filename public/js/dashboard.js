@@ -1,14 +1,14 @@
+import { IP_LOCAL } from "./../vars.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarContContrato();
   cargarContClient();
   cargarTablaconVehiculo();
 });
 
-//;
-
 async function cargarContContrato() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/contContrato"); // Ruta relativa al servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/contContrato`); // Ruta relativa al servidor
     if (!response.ok) throw new Error("Error en la solicitud");
 
     const conContrato = await response.json();
@@ -47,7 +47,7 @@ async function cargarContContrato() {
 
 async function cargarContClient() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/contCliente");
+    const response = await fetch(`http://${IP_LOCAL}:3000/contCliente`);
     if (!response.ok) throw new Error("Error en la solicitud");
 
     const { data } = await response.json();
@@ -118,7 +118,7 @@ function actualizarGrafico(labels, data) {
 async function cargarTablaconVehiculo() {
   try {
     // Realiza una solicitud al servidor para obtener los contratos del cliente
-    const response = await fetch(`http://192.168.5.207:3000/tablaconVehiculo`);
+    const response = await fetch(`http://${IP_LOCAL}:3000/tablaconVehiculo`);
     const conVehi = await response.json();
 
     // Verifica si hay contratos disponibles

@@ -1,3 +1,6 @@
+// const { IP_LOCAL } = require("./../vars.js");
+import { IP_LOCAL } from "./../vars.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   cargarClientes();
   cargarModelos();
@@ -103,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function cargarClientes() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/clientes"); // Ruta relativa al servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/clientes`); // Ruta relativa al servidor
     if (!response.ok) {
       throw new Error("Error en la solicitud");
     }
@@ -135,7 +138,7 @@ async function cargarClientes() {
 
 async function cargarModelos() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/modelos"); // Ruta del servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/modelos`); // Ruta del servidor
     if (!response.ok) {
       throw new Error("Error en la solicitud");
     }
@@ -166,7 +169,7 @@ async function cargarModelos() {
 
 async function cargarModelosFila(selectElement) {
   try {
-    const response = await fetch("http://192.168.5.207:3000/modelos"); // Ruta del servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/modelos`); // Ruta del servidor
     if (!response.ok) {
       throw new Error("Error en la solicitud");
     }
@@ -209,7 +212,7 @@ async function cargarContrato() {
       try {
         // Realiza una solicitud al servidor para obtener los contratos del cliente
         const response = await fetch(
-          `http://192.168.5.207:3000/contratosNro?idCli=${idCli}`
+          `http://${IP_LOCAL}:3000/contratosNro?idCli=${idCli}`
         );
         const contratos = await response.json();
 
@@ -502,14 +505,11 @@ async function guardarDocumento() {
   const contratoData = { ...formData, detalles, archivoPdf: nombreArchivo };
 
   try {
-    const response = await fetch(
-      "http://192.168.5.207:3000/insertarDocumento",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(contratoData),
-      }
-    );
+    const response = await fetch(`http://${IP_LOCAL}:3000/insertarDocumento`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(contratoData),
+    });
 
     const result = await response.json();
     if (result.success) {
@@ -533,7 +533,7 @@ async function subirArchivo(archivo) {
   formData.append("documentType", "documents");
 
   try {
-    const response = await fetch("http://192.168.5.207:3000/subirArchivo", {
+    const response = await fetch(`http://${IP_LOCAL}:3000/subirArchivo`, {
       method: "POST",
       enctype: "multipart/form-data",
       body: formData,
@@ -552,7 +552,7 @@ async function subirArchivo(archivo) {
 async function validarArchivo(nombreArchivo) {
   try {
     const response = await fetch(
-      `http://192.168.5.207:3000/validarArchivo?nombre=${nombreArchivo}`
+      `http://${IP_LOCAL}:3000/validarArchivo?nombre=${nombreArchivo}`
     );
     const result = await response.json();
 

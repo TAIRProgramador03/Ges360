@@ -536,7 +536,7 @@
         }, 2000); 
     };
 </script>
-<script src="../js/adiciona_vehiculo.js"></script>
+<script type="module" src="../js/adiciona_vehiculo.js"></script>
 <?php
     require './templates/footer.html';
 ?>

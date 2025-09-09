@@ -1,4 +1,5 @@
 // Ejecución de funciones al cargar la página
+import { IP_LOCAL } from "./../vars.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const btnFlotaTotal = document.getElementById("btn-flota-total");
@@ -39,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 async function cargarClientes() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/clientes"); // Ruta relativa al servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/clientes`); // Ruta relativa al servidor
     if (!response.ok) throw new Error("Error en la solicitud");
 
     const clientes = await response.json();
@@ -70,7 +71,7 @@ async function cargarLeasingOfClient(idCli) {
   try {
     const btnSelectLeasing = document.getElementById("combo-box-leasing");
     const response = await fetch(
-      `http://192.168.5.207:3000/leasingOfClient?idCli=${idCli}`
+      `http://${IP_LOCAL}:3000/leasingOfClient?idCli=${idCli}`
     ); // Ruta relativa al servidor
     if (!response.ok) throw new Error("Error en la solicitud");
 
@@ -114,7 +115,7 @@ async function cargarLeasingOfClient(idCli) {
 
 async function cargarLeasing() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/leasing"); // Ruta relativa al servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/leasing`); // Ruta relativa al servidor
     if (!response.ok) throw new Error("Error en la solicitud");
 
     const leasing = await response.json();
@@ -167,7 +168,7 @@ async function listaVehiculosAsignables() {
 
   try {
     const response = await fetch(
-      `http://192.168.5.207:3000/consultaVehiculoLeasing?idCli=${idCli}&nroLeasing=${idLea}`
+      `http://${IP_LOCAL}:3000/consultaVehiculoLeasing?idCli=${idCli}&nroLeasing=${idLea}`
     );
     const vehiLeasing = await response.json();
 
@@ -233,7 +234,7 @@ async function listaVehiculosAsignables() {
 
 async function cargarClientesAsig() {
   try {
-    const response = await fetch("http://192.168.5.207:3000/clientes"); // Ruta relativa al servidor
+    const response = await fetch(`http://${IP_LOCAL}:3000/clientes`); // Ruta relativa al servidor
     if (!response.ok) throw new Error("Error en la solicitud");
 
     const clientes = await response.json();
@@ -312,7 +313,7 @@ async function cargarOperaciones() {
       try {
         // Realiza una solicitud al servidor para obtener las operaciones asignadas al cliente
         const response = await fetch(
-          `http://192.168.5.207:3000/operacionesAsig?idCli=${idCli}`
+          `http://${IP_LOCAL}:3000/operacionesAsig?idCli=${idCli}`
         );
         const operaciones = await response.json();
 
@@ -361,7 +362,7 @@ async function cargarContrato() {
       try {
         // Realiza una solicitud al servidor para obtener las operaciones asignadas al cliente
         const response = await fetch(
-          `http://192.168.5.207:3000/contratosNroAdi?idCli=${idCli}`
+          `http://${IP_LOCAL}:3000/contratosNroAdi?idCli=${idCli}`
         );
         const contratos = await response.json();
 
@@ -480,14 +481,11 @@ async function guardaAsignacion() {
   const asignacionData = { ...formData, detalles };
 
   try {
-    const response = await fetch(
-      "http://192.168.5.207:3000/insertaAsignacion",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(asignacionData),
-      }
-    );
+    const response = await fetch(`http://${IP_LOCAL}:3000/insertaAsignacion`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(asignacionData),
+    });
 
     const result = await response.json();
     if (result.success) {
@@ -522,7 +520,7 @@ const validarAsignacion = async (detalles) => {
   console.log(detalles);
 
   const validacionResponse = await fetch(
-    "http://192.168.5.207:3000/validaContratoCantidad",
+    `http://${IP_LOCAL}:3000/validaContratoCantidad`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },

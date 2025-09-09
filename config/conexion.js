@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const odbc = require("odbc"); // Usar el paquete odbc para conectar a la base de datos
 const app = express();
 const port = 3000;
-const IP_ODBC = process.env.IP_ODBC;
+const { IP_ODBC } = require("./../public/vars.js");
 
 // Middleware para parsear los datos JSON
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ app.post("./config/conexion.js", async (req, res) => {
         dbUser +
         ";PWD=" +
         password +
-        `;System=${IP_SYSTEM}`
+        `;System=${IP_ODBC}`
     );
     console.log("Conexión exitosa.");
 

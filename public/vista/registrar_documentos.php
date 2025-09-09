@@ -1525,7 +1525,7 @@
     });
 
 </script>
-<script src="../js/registrar_documentos.js"></script>
+<script type="module" src="../js/registrar_documentos.js"></script>
 <?php
     require './templates/footer.html';
 ?>

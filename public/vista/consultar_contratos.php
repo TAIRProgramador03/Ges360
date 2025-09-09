@@ -1380,7 +1380,7 @@
         }
     });*/
 </script>
-<script src="../js/consulta_contratos.js"></script>
+<script type="module" src="../js/consulta_contratos.js"></script>
 <?php
     require './templates/footer.html';
 ?>

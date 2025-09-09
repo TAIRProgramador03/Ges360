@@ -1,5 +1,5 @@
 const odbc = require("odbc");
-const IP_ODBC_BD = process.env.IP_ODBC_BD;
+const { IP_ODBC_BD } = require("./../public/vars.js");
 
 async function connectToDatabase() {
   try {

@@ -1409,7 +1409,7 @@
     });
 
 </script>
-<script src="../js/registrar_contratos.js"></script>
+<script type="module" src="../js/registrar_contratos.js"></script>
 <?php
     require './templates/footer.html';
 ?>

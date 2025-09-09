@@ -1,3 +1,5 @@
+import { IP_LOCAL } from "./../vars.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   // Cargar las tablas
 
@@ -61,7 +63,7 @@ async function cargartablaClienteLeas() {
     .addEventListener("click", async function () {
       try {
         const response = await fetch(
-          `http://192.168.5.207:3000/tablaClienteLeas`
+          `http://${IP_LOCAL}:3000/tablaClienteLeas`
         );
         const contratos = await response.json();
         const tbody = document.querySelector(".tabla-form-cli table tbody");
@@ -213,7 +215,7 @@ async function cargartablaVehiculo() {
     .addEventListener("click", async function () {
       try {
         // Realiza una solicitud al servidor para obtener los contratos del cliente
-        const response = await fetch(`http://192.168.5.207:3000/tablaVehiculo`);
+        const response = await fetch(`http://${IP_LOCAL}:3000/tablaVehiculo`);
         const contratos = await response.json();
 
         // Verifica si hay contratos disponibles
@@ -576,7 +578,7 @@ async function guardaLeasing() {
   const contratoData = { ...formData, detalles, archivoPdf: nombreArchivo };
 
   try {
-    const response = await fetch("http://192.168.5.207:3000/insertaLeasing", {
+    const response = await fetch(`http://${IP_LOCAL}:3000/insertaLeasing`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contratoData),
@@ -604,7 +606,7 @@ async function subirArchivo(archivo) {
   formData.append("documentType", "leasings");
 
   try {
-    const response = await fetch("http://192.168.5.207:3000/subirArchivo", {
+    const response = await fetch(`http://${IP_LOCAL}:3000/subirArchivo`, {
       method: "POST",
       enctype: "multipart/form-data",
       body: formData,
@@ -623,7 +625,7 @@ async function subirArchivo(archivo) {
 async function validarArchivo(nombreArchivo) {
   try {
     const response = await fetch(
-      `http://192.168.5.207:3000/validarArchivo?nombre=${nombreArchivo}`
+      `http://${IP_LOCAL}:3000/validarArchivo?nombre=${nombreArchivo}`
     );
     const result = await response.json();
 
@@ -705,7 +707,7 @@ async function cargarContratosPorCliente(idCli) {
 
   try {
     const response = await fetch(
-      `http://192.168.5.207:3000/contratosNroAdi?idCli=${idCli}`
+      `http://${IP_LOCAL}:3000/contratosNroAdi?idCli=${idCli}`
     );
     const contratos = await response.json();
 
