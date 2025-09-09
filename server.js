@@ -640,7 +640,7 @@ app.post("/insertarContrato", async (req, res) => {
 
   const claseContra = "P";
   const fechaFormatoDB = convertirFecha(fechaFirma);
-  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/contract/${archivoPdf}`;
+  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/contracts/${archivoPdf}`;
 
   let connection;
   try {
@@ -827,7 +827,7 @@ app.post("/insertarDocumento", async (req, res) => {
     return fecha.replace(/-/g, "");
   }
 
-  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/${archivoPdf}`;
+  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/documents/${archivoPdf}`;
 
   const claseDocu = "H";
   const fechaFormatoDB = convertirFecha(fechaFirma);
@@ -1150,7 +1150,7 @@ app.post("/insertaLeasing", async (req, res) => {
   const fechaIniDB = convertirFecha(fechaIni);
   const fechaFinDB = convertirFecha(fechaFin);
 
-  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/${archivoPdf}`;
+  let nombreArchivo = `http://192.168.5.207/tair-web/public/pdf/leasings/${archivoPdf}`;
   let connection;
   try {
     connection = await odbc.connect(

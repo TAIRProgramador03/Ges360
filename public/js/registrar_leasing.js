@@ -92,29 +92,29 @@ async function cargartablaClienteLeas() {
         agregarEventosSeleccion();
         restaurarSeleccionCliente(); // Restaurar selección después de cargar datos
       } catch (error) {
-        try {
-          // Llamada asincrónica al servidor para obtener una solución de OpenAI
-          const response = await fetch("/get-openai-response", {
-            method: "GET",
-          });
+        // try {
+        //   // Llamada asincrónica al servidor para obtener una solución de OpenAI
+        //   const response = await fetch("/get-openai-response", {
+        //     method: "GET",
+        //   });
 
-          if (!response.ok) {
-            throw new Error("No se pudo obtener la respuesta de OpenAI");
-          }
+        //   if (!response.ok) {
+        //     throw new Error("No se pudo obtener la respuesta de OpenAI");
+        //   }
 
-          const fixMessage = await response.text();
+        //   const fixMessage = await response.text();
 
-          // Mostrar la posible solución en la consola
-          console.log(fixMessage);
+        //   // Mostrar la posible solución en la consola
+        //   console.log(fixMessage);
 
-          // Mostrarla al usuario, por ejemplo, en un alert o en el DOM
-          alert("Posible solución: " + fixMessage);
-        } catch (error) {
-          console.error("Error al contactar a OpenAI:", error);
-          alert(
-            "Error al obtener los datos de OpenAI. Inténtelo de nuevo más tarde."
-          );
-        }
+        //   // Mostrarla al usuario, por ejemplo, en un alert o en el DOM
+        //   alert("Posible solución: " + fixMessage);
+        // } catch (error) {
+        //   console.error("Error al contactar a OpenAI:", error);
+        //   alert(
+        //     "Error al obtener los datos de OpenAI. Inténtelo de nuevo más tarde."
+        //   );
+        // }
         alert("Error al obtener los datos. Inténtelo de nuevo más tarde.");
       }
     });
