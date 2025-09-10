@@ -10,12 +10,12 @@ const { IP_LOCAL, IP_ODBC_BD } = require("./public/vars.js");
 
 require("dotenv").config(); // Esto carga las variables del archivo .env
 
-const { OpenAI } = require("openai");
+// const { OpenAI } = require("openai");
 
-// Crear una instancia de OpenAI con tu API Key cargada desde las variables de entorno
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, // Usar la clave de API desde las variables de entorno
-});
+// // Crear una instancia de OpenAI con tu API Key cargada desde las variables de entorno
+// const openai = new OpenAI({
+//   apiKey: process.env.OPENAI_API_KEY, // Usar la clave de API desde las variables de entorno
+// });
 
 // Variables globales
 const dbConfig = {

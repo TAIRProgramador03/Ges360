@@ -3,6 +3,11 @@ import { IP_LOCAL } from "./../vars.js";
 document.addEventListener("DOMContentLoaded", () => {
   cargarClientes();
   cargarModelos();
+
+  document.getElementById("btnClear").addEventListener("click", limpiarCampos);
+  document
+    .getElementById("grabarButton")
+    .addEventListener("click", guardarContrato);
 });
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -2,6 +2,7 @@ import { IP_LOCAL } from "./../vars.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   cargarClientes();
+  document.getElementById("btnClear").addEventListener("click", limpiarCampos);
 });
 
 async function cargarClientes() {

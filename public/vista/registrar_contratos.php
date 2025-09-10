@@ -1189,7 +1189,7 @@
             </div>
             <div class="form-cliente-cbo">
                 <div class="cbo-registrar body">
-                <button class="clear-action" onclick="limpiarCampos()">
+                <button class="clear-action" id="btnClear">
                     <div>
                         <div class="broom"></div>
                         <div class="trash">
@@ -1203,7 +1203,7 @@
                     </div>
                     Limpiar
                 </button>
-                    <button class="continue-application" id="grabarButton" onclick="guardarContrato()">
+                    <button class="continue-application" id="grabarButton">
                         <div>
                             <div class="pencil"></div>
                             <div class="folder">

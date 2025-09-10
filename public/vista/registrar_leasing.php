@@ -1458,7 +1458,7 @@
                             </div>
                         </div>
                     </label>-->
-                    <button class="add-action" onclick="limpiarCampos()">
+                    <button class="add-action" id="btnClear">
                         <div>
                             <div class="broom"></div>
                             <div class="trash">
@@ -1472,7 +1472,7 @@
                         </div>
                         Limpiar
                     </button>
-                    <button class="continue-application" onclick="guardaLeasing()">
+                    <button class="continue-application" id="grabarButton">
                         <div>
                             <div class="pencil"></div>
                             <div class="folder">

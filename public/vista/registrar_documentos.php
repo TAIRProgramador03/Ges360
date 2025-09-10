@@ -1300,7 +1300,7 @@
             </div>
             <div class="form-cliente-cbo">
                 <div class="cbo-registrar body">
-                    <button class="add-action" onclick="adicionaVeh()" style="font-weight: 800;">
+                    <button class="add-action" id="btnAddVeh" style="font-weight: 800;">
                         <div>
                             <div class="broom"></div>
                             <div class="trash">
@@ -1314,7 +1314,7 @@
                         </div>
                         Adicionar
                     </button>
-                    <button class="clear-action" onclick="limpiarCampos()" style="font-weight: 800;">
+                    <button class="clear-action" id="btnClear" style="font-weight: 800;">
                         <div>
                             <div class="broom"></div>
                             <div class="trash">
@@ -1328,7 +1328,7 @@
                         </div>
                         Limpiar
                     </button>
-                    <button class="continue-application" id="grabarButton" onclick="guardarDocumento()" style="font-weight: 800;">
+                    <button class="continue-application" id="grabarButton" style="font-weight: 800;">
                         <div>
                             <div class="pencil"></div>
                             <div class="folder">

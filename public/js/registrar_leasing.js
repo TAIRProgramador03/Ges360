@@ -1,6 +1,11 @@
 import { IP_LOCAL } from "./../vars.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("btnClear").addEventListener("click", limpiarCampos);
+  document
+    .getElementById("grabarButton")
+    .addEventListener("click", guardaLeasing);
+
   // Cargar las tablas
 
   localStorage.setItem("clienteSeleccionadoID", "");

@@ -519,8 +519,8 @@
                         <select id="combo-box-asig" name="opciones" class="cbo-form-leasing" disabled></select>
                         <div class="btn-footer-adi">
                             <input class="check-xtodo" type="checkbox" id="repeticion" disabled> Repetir
-                            <button class="btn-acepta-adi" onclick="guardaAsignacion()">Grabar</button>
-                            <button class="btn-cancelar-adi" onclick="deshabilitarSelect()">Limpiar</button>
+                            <button class="btn-acepta-adi" id="grabarButton">Grabar</button>
+                            <button class="btn-cancelar-adi" id="btnClear" >Limpiar</button>
                         </div>
                     </div>
                 </div>

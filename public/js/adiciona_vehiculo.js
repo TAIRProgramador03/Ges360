@@ -2,6 +2,13 @@
 import { IP_LOCAL } from "./../vars.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  document
+    .getElementById("btnClear")
+    .addEventListener("click", deshabilitarSelect);
+  document
+    .getElementById("grabarButton")
+    .addEventListener("click", guardaAsignacion);
+
   const btnFlotaTotal = document.getElementById("btn-flota-total");
 
   document

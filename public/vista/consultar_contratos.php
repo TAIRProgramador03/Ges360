@@ -1243,7 +1243,7 @@
                     </div>
                     Doc. Asoc.
                 </button>
-                <button class="clear-action"  onclick="limpiarCampos()">
+                <button class="clear-action" id="btnClear">
                     <div>
                         <div class="broom"></div>
                         <div class="trash">
