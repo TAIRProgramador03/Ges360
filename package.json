@@ -10,9 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/fredoka": "^5.2.10",
+    "@fontsource/fredoka": "^5.2.10",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "swiper": "^12.1.2"
+    "swiper": "^12.1.2",
+    "tailwindcss-animated": "^2.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.29.0",
