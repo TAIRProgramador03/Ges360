@@ -178,7 +178,7 @@ function App() {
             {url == "" ? <span></span> : <span>v1.0.0</span>}
             <h3 className="font-medium text-4xl uppercase">{name}</h3>
             {url == "" ? (
-              <span className="text-white">Proximamente...</span>
+              <span className="text-white">Próximamente...</span>
             ) : (
               <a
                 href={`https://${url}`}
